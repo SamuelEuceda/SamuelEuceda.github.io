@@ -20,14 +20,24 @@ var init = function (window) {
         ////////////////////////////////////////////////////////////
         
         // TODO 1 : Declare and initialize our variables
-
+        var circle;
+        var circles = [];
 
         // TODO 2 : Create a function that draws a circle 
-        
+        function drawCircle(){
+            circle = draw.randomCircleInArea(canvas, true, true, '#999', 2);
+            physikz.addRandomVelocity(circle, canvas);
+            view.addChild(circle);
+            circles.push(circle)
+        }
 
         // TODO 3 / 7 : Call the drawCircle() function 
-
-
+         var loopsCompleted = 0; 
+        while (loopsCompleted < 100) {
+            drawCircle();
+            loopsCompleted++
+        }
+    
         ////////////////////////////////////////////////////////////
         ///////////////// PROGRAM LOGIC ////////////////////////////
         ////////////////////////////////////////////////////////////
@@ -39,12 +49,20 @@ var init = function (window) {
         */
         function update() {
             // TODO 4 : Update the circle's position //
+            /*for (var i; i < circles.length; i++) {
+                physikz.updatePosition(circles[i]);
+            }*/
 
-            
             // TODO 5 : Call game.checkCirclePosition() on your circles.
-           
-
+            for (var i = 0; i < circles.length; i++) {
+                game.checkCirclePosition(circles[i]);
+                physikz.updatePosition(circles[i])
+            }
             // TODO 8 : Iterate over the array
+            /*for (var circleMove = 0; circleMove < circles.length; circleMove++) {
+            physikz.updatePosition(circles[circleMove]);
+            game.checkCirclePosition(circles[circleMove]);
+        }*/
            
             
         }
@@ -62,7 +80,15 @@ var init = function (window) {
             }
             
             // TODO 6 : YOUR CODE STARTS HERE //////////////////////
-            
+            if (circle.x < 0) {
+                circle.x = canvas.width;
+            }
+            if (circle.y < 0 ) {
+                circle.y = canvas.height;
+            }
+            if (circle.y > canvas.height) {
+                circle.y = 0;
+            }
 
 
             // YOUR TODO 6 CODE ENDS HERE //////////////////////////
@@ -90,3 +116,7 @@ if((typeof process !== 'undefined') &&
     // here, export any references you need for tests //
     module.exports = init;
 }
+function newFunction(drawCircle) {
+    drawCircle();
+}
+
