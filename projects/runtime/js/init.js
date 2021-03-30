@@ -1,5 +1,8 @@
 var init = function (window) {
     'use strict';
+    var hud = opspark.makeHud();
+    view.addChild(hud);
+    window.hud = hud;
 
     var 
         opspark = window.opspark,
