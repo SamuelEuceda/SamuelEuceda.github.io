@@ -78,8 +78,33 @@ var level01 = function (window) {
         createSpike(1700, groundY);
         createSawBlade(1850, groundY - 110);
         createSpike(2000, groundY)
+
+        function createEnemy(x,y){
+            var enemy = game.createGameItem('enemy',25);
+            var redSquare = draw.rect(50,50,'red');
+            redSquare.x = -25;
+            redSquare.y = -25;
+            enemy.addChild(redSquare);
+            enemy.x = x;
+            enemy.y = groundY - y;
+            game.addGameItem(enemy);
+            enemy.velocityX = -1;
+
+            /*ask Mrs. Scheller about rotationavelocity*/
+            enemy.onPlayerCollision = function() {
+                console.log('The enemy has hit Halle');
+                game.changeIntegrity(-20);
+            };
+            enemy.onProjectileCollision = function(){
+                console.log('Halle has hit the enemy');
+                game.increaseScore(+100);
+                enemy.fadeOut(); 
+            };
+            
+        };
+        createEnemy(400, 50);
         // DO NOT EDIT CODE BELOW HERE
-    }
+    };
 };
 
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
