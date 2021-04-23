@@ -102,7 +102,25 @@ var level01 = function (window) {
             };
             
         };
+        function createReward(x,y){
+            var enemy = game.createGameItem('enemy',25);
+            var redSquare = draw.rect(50,50,'blue');
+            redSquare.x = -25;
+            redSquare.y = -25;
+            enemy.addChild(redSquare);
+            enemy.x = x;
+            enemy.y = groundY - y;
+            game.addGameItem(enemy);
+            enemy.velocityX = -1;
+
+            enemy.onPlayerCollision = function() {
+                console.log('The reward has hit Halle');
+                game.increaseScore(+100);
+                enemy.fadeOut();
+            };
+        };
         createEnemy(400, 50);
+        createReward(200,50);
         // DO NOT EDIT CODE BELOW HERE
     };
 };
