@@ -33,12 +33,12 @@ var level01 = function (window) {
 
         // TODO 6 and on go here
         // BEGIN EDITING YOUR CODE HERE
-        function createSawBlade(x, y){
+        function createSawBlade(x, ){
             var hitZoneSize = 25;
             var damageFromObstacle = 10;
             var sawBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);
             sawBladeHitZone.x = x;
-            sawBladeHitZone.y = y;
+            sawBladeHitZone.y = groundY - 110;
             game.addGameItem(sawBladeHitZone); 
             var obstacleImage = draw.bitmap('img/sawblade.png');
             obstacleImage.x = -25;
@@ -47,12 +47,12 @@ var level01 = function (window) {
     }
         
         
-        function createSpike(x, y){
+        function createSpike(x){
             var hitZoneSize = 20;
             var damageFromObstacle = 10;
             var spikeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);
             spikeHitZone.x = x;
-            spikeHitZone.y = y;
+            spikeHitZone.y = groundY;
             game.addGameItem(spikeHitZone); 
             var obstacleImage = draw.bitmap('img/spike---drawing.png')
             spikeHitZone.addChild(obstacleImage);
@@ -61,66 +61,58 @@ var level01 = function (window) {
             obstacleImage.scaleX = 0.20;
             obstacleImage.scaleY = 0.20;
         }
-        /*
-        var addDistance = [];
-        for( var i = 0; i < 25; i++){
-          createSpike(500 + addDistance[i + 150], groundY);  
-        }
-        */
-        createSpike(500, groundY);
-        createSawBlade(650, groundY - 110);
-        createSpike(800, groundY);
-        createSawBlade(950, groundY - 110);
-        createSpike(1100, groundY)
-        createSawBlade(1250, groundY -110)
-        createSpike(1400, groundY);
-        createSawBlade(1550, groundY - 110);
-        createSpike(1700, groundY);
-        createSawBlade(1850, groundY - 110);
-        createSpike(2000, groundY)
 
-        function createEnemy(x,y){
+        function createEnemy(x){
             var enemy = game.createGameItem('enemy',25);
             var redSquare = draw.rect(50,50,'red');
             redSquare.x = -25;
             redSquare.y = -25;
             enemy.addChild(redSquare);
             enemy.x = x;
-            enemy.y = groundY - y;
+            enemy.y = groundY - 50;
             game.addGameItem(enemy);
-            enemy.velocityX = -1;
+            enemy.velocityX = -2;
+            varImage = draw.bitmap('img/spike---drawing.png');
 
             /*ask Mrs. Scheller about rotationavelocity*/
             enemy.onPlayerCollision = function() {
                 console.log('The enemy has hit Halle');
                 game.changeIntegrity(-20);
+                enemy.fadeOut();
             };
             enemy.onProjectileCollision = function(){
                 console.log('Halle has hit the enemy');
-                game.increaseScore(+100);
+                game.increaseScore(+500);
                 enemy.fadeOut(); 
             };
             
         };
-        function createReward(x,y){
+        function createReward(x){
             var enemy = game.createGameItem('enemy',25);
             var redSquare = draw.rect(50,50,'blue');
             redSquare.x = -25;
             redSquare.y = -25;
             enemy.addChild(redSquare);
             enemy.x = x;
-            enemy.y = groundY - y;
+            enemy.y = groundY - 50;
             game.addGameItem(enemy);
-            enemy.velocityX = -1;
+            enemy.velocityX = -2;
 
             enemy.onPlayerCollision = function() {
                 console.log('The reward has hit Halle');
-                game.increaseScore(+100);
+                game.increaseScore(+250);
                 enemy.fadeOut();
             };
         };
-        createEnemy(400, 50);
-        createReward(200,50);
+        createSpike(400);
+        createReward(500);
+        createSpike(600);
+        createSawBlade(750);
+        createEnemy(920);
+        createSpike(920);
+        createSawBlade(1050)
+        createReward
+
         // DO NOT EDIT CODE BELOW HERE
     };
 };
