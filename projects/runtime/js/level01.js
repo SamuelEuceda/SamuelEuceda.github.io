@@ -40,9 +40,12 @@ var level01 = function (window) {
             sawBladeHitZone.x = x;
             sawBladeHitZone.y = groundY - 110;
             game.addGameItem(sawBladeHitZone); 
-            var obstacleImage = draw.bitmap('img/sawblade.png');
-            obstacleImage.x = -25;
-            obstacleImage.y = -25;
+            var obstacleImage = draw.bitmap('img/Spike.png');
+            
+            obstacleImage.x = -30;
+            obstacleImage.y = -35;
+            obstacleImage.scaleX = .075;
+            obstacleImage.scaleY = .075;
             sawBladeHitZone.addChild(obstacleImage);            
     }
         
@@ -54,17 +57,17 @@ var level01 = function (window) {
             spikeHitZone.x = x;
             spikeHitZone.y = groundY;
             game.addGameItem(spikeHitZone); 
-            var obstacleImage = draw.bitmap('img/spike---drawing.png')
+            var obstacleImage = draw.bitmap('img/blue shell.png')
             spikeHitZone.addChild(obstacleImage);
             obstacleImage.x = -25;
             obstacleImage.y = -25;
-            obstacleImage.scaleX = 0.20;
-            obstacleImage.scaleY = 0.20;
+            obstacleImage.scaleX = 0.25;
+            obstacleImage.scaleY = 0.25;
         }
 
         function createEnemy(x){
             var enemy = game.createGameItem('enemy',25);
-            var redSquare = draw.rect(50,50,'red');
+            var redSquare = draw.bitmap('img/spike---drawing.png');
             redSquare.x = -25;
             redSquare.y = -25;
             enemy.addChild(redSquare);
@@ -72,7 +75,6 @@ var level01 = function (window) {
             enemy.y = groundY - 50;
             game.addGameItem(enemy);
             enemy.velocityX = -2;
-            varImage = draw.bitmap('img/spike---drawing.png');
 
             /*ask Mrs. Scheller about rotationavelocity*/
             enemy.onPlayerCollision = function() {
