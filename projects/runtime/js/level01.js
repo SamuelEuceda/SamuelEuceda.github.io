@@ -79,7 +79,6 @@ var level01 = function (window) {
             billImage.scaleX = .25;
             billImage.scaleY = .25;
 
-            /*ask Mrs. Scheller about rotationavelocity*/
             enemy.onPlayerCollision = function() {
                 console.log('The enemy has hit Halle');
                 game.changeIntegrity(-50);
@@ -107,7 +106,7 @@ var level01 = function (window) {
 
             enemy.onPlayerCollision = function() {
                 console.log('The reward has hit Halle');
-                game.increaseScore(+40);
+                game.increaseScore(+400);
                 enemy.fadeOut();
             };
         };
