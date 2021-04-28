@@ -33,7 +33,7 @@ var level01 = function (window) {
 
         // TODO 6 and on go here
         // BEGIN EDITING YOUR CODE HERE
-        function createSawBlade(x, ){
+        function createSpike(x){
             var hitZoneSize = 25;
             var damageFromObstacle = 10;
             var sawBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);
@@ -50,70 +50,119 @@ var level01 = function (window) {
     }
         
         
-        function createSpike(x){
+        function createShell(x){
             var hitZoneSize = 20;
             var damageFromObstacle = 10;
             var spikeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);
             spikeHitZone.x = x;
             spikeHitZone.y = groundY;
             game.addGameItem(spikeHitZone); 
-            var obstacleImage = draw.bitmap('img/blue shell.png')
+            var obstacleImage = draw.bitmap('img/blue shell.png');
             spikeHitZone.addChild(obstacleImage);
-            obstacleImage.x = -25;
-            obstacleImage.y = -25;
-            obstacleImage.scaleX = 0.25;
-            obstacleImage.scaleY = 0.25;
+            obstacleImage.x = -35;
+            obstacleImage.y = -30;
+            obstacleImage.scaleX = 0.3;
+            obstacleImage.scaleY = 0.3;
+            
         }
 
         function createEnemy(x){
             var enemy = game.createGameItem('enemy',25);
-            var redSquare = draw.bitmap('img/spike---drawing.png');
-            redSquare.x = -25;
-            redSquare.y = -25;
-            enemy.addChild(redSquare);
+            var billImage = draw.bitmap('img/bulletbill.png');
+            billImage.x = -25;
+            billImage.y = -25;
+            enemy.addChild(billImage);
             enemy.x = x;
             enemy.y = groundY - 50;
             game.addGameItem(enemy);
             enemy.velocityX = -2;
+            billImage.scaleX = .25;
+            billImage.scaleY = .25;
 
             /*ask Mrs. Scheller about rotationavelocity*/
             enemy.onPlayerCollision = function() {
                 console.log('The enemy has hit Halle');
-                game.changeIntegrity(-20);
+                game.changeIntegrity(-50);
                 enemy.fadeOut();
             };
             enemy.onProjectileCollision = function(){
                 console.log('Halle has hit the enemy');
-                game.increaseScore(+500);
+                game.increaseScore(+850);
                 enemy.fadeOut(); 
             };
             
         };
-        function createReward(x){
+        function createReward(x, y){
             var enemy = game.createGameItem('enemy',25);
-            var redSquare = draw.rect(50,50,'blue');
-            redSquare.x = -25;
-            redSquare.y = -25;
-            enemy.addChild(redSquare);
+            var redCoin = draw.bitmap('img/redCoin.png');
+            redCoin.x = -30;
+            redCoin.y = -35;
+            enemy.addChild(redCoin);
             enemy.x = x;
-            enemy.y = groundY - 50;
+            enemy.y = groundY - y;
             game.addGameItem(enemy);
             enemy.velocityX = -2;
+            redCoin.scaleY = .075;
+            redCoin.scaleX = .075;
 
             enemy.onPlayerCollision = function() {
                 console.log('The reward has hit Halle');
-                game.increaseScore(+250);
+                game.increaseScore(+40);
                 enemy.fadeOut();
             };
         };
-        createSpike(400);
-        createReward(500);
-        createSpike(600);
-        createSawBlade(750);
-        createEnemy(920);
-        createSpike(920);
-        createSawBlade(1050)
-        createReward
+        createShell(400);
+        createReward(400, 80);
+        createShell(600);
+        createReward(600, 80);
+        createSpike(750);
+        createEnemy(930);
+        createShell(930);
+        createSpike(1100);
+        createShell(1250);
+        createReward(1250, 80);
+        createSpike(1450);
+        createShell(1650);
+        createReward(1650, 80);
+        createSpike(1850);
+        createShell(2050);
+        createReward(2050, 80);
+        createSpike(2250);
+        createShell(2450);
+        createReward(2450, 80);
+        createSpike(2650);
+        createShell(2850);
+        createEnemy(2850);
+        createSpike(3025);
+        createShell(3200);
+        createReward(3200, 80);
+        createSpike(3375);
+        createShell(3550);
+        createReward(3550, 80);
+        createSpike(3725);
+        createReward(3812.5, 100);
+        createSpike(3900);
+        createShell(4075);
+        createEnemy(4075);
+        createSpike(4425);
+        createShell(4600);
+        createReward(4600, 80);
+        createSpike(4775);
+        createReward(4862.5,100);
+        createSpike(4950);
+        createShell(5125);
+        createEnemy(5125);
+        createSpike(5300);
+        createShell(5475);
+        createReward(5475, 80);
+        createSpike(5650);
+        createShell(5825);
+        createReward(5825, 80);
+        createEnemy(6000);
+
+
+
+        
 
         // DO NOT EDIT CODE BELOW HERE
     };
